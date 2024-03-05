@@ -8,6 +8,9 @@ dependencies:
   core-js:
     specifier: ^3.8.3
     version: 3.36.0
+  materialize-css:
+    specifier: 1.0.0-rc.2
+    version: 1.0.0-rc.2
   register-service-worker:
     specifier: ^1.7.2
     version: 1.7.2
@@ -7324,6 +7327,10 @@ packages:
     dependencies:
       tmpl: 1.0.5
     dev: true
+
+  /materialize-css@1.0.0-rc.2:
+    resolution: {integrity: sha512-FuQmSyq4Qv0ov7A2qXw0E6/jbQzSWx2P1pg2/XQDYTkkSc/GyiFAxu3fw9zgShwuTvyumEiw5jkxQWT9siqMBQ==}
+    dev: false
 
   /mdn-data@2.0.14:
     resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
