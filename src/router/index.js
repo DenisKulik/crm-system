@@ -34,6 +34,12 @@ const routes = [
     meta: { layout: 'main' },
     component: () => import('@/views/DetailRecordView.vue'),
   },
+  {
+    path: '/history',
+    name: 'history',
+    meta: { layout: 'main' },
+    component: () => import('@/views/HistoryView.vue'),
+  },
 ];
 
 const router = new VueRouter({
