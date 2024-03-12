@@ -28,6 +28,12 @@ const routes = [
     meta: { layout: 'main' },
     component: () => import('@/views/CategoriesView.vue'),
   },
+  {
+    path: '/detail-record',
+    name: 'detail-record',
+    meta: { layout: 'main' },
+    component: () => import('@/views/DetailRecordView.vue'),
+  },
 ];
 
 const router = new VueRouter({
