@@ -40,6 +40,12 @@ const routes = [
     meta: { layout: 'main' },
     component: () => import('@/views/HistoryView.vue'),
   },
+  {
+    path: '/planning',
+    name: 'planning',
+    meta: { layout: 'main' },
+    component: () => import('@/views/PlanningView.vue'),
+  },
 ];
 
 const router = new VueRouter({
