@@ -52,6 +52,12 @@ const routes = [
     meta: { layout: 'main' },
     component: () => import('@/views/ProfileView.vue'),
   },
+  {
+    path: '/record',
+    name: 'record',
+    meta: { layout: 'main' },
+    component: () => import('@/views/RecordView.vue'),
+  },
 ];
 
 const router = new VueRouter({
