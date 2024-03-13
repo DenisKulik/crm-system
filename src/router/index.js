@@ -46,6 +46,12 @@ const routes = [
     meta: { layout: 'main' },
     component: () => import('@/views/PlanningView.vue'),
   },
+  {
+    path: '/profile',
+    name: 'profile',
+    meta: { layout: 'main' },
+    component: () => import('@/views/ProfileView.vue'),
+  },
 ];
 
 const router = new VueRouter({
