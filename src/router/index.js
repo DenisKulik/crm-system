@@ -1,15 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HomeView from '@/views/HomeView.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView,
-  },
   {
     path: '/login',
     name: 'login',
@@ -23,13 +17,19 @@ const routes = [
     component: () => import('@/views/RegisterView.vue'),
   },
   {
+    path: '/',
+    name: 'home',
+    meta: { layout: 'main' },
+    component: () => import('@/views/HomeView.vue'),
+  },
+  {
     path: '/categories',
     name: 'categories',
     meta: { layout: 'main' },
     component: () => import('@/views/CategoriesView.vue'),
   },
   {
-    path: '/detail-record',
+    path: '/detail-record/:id',
     name: 'detail-record',
     meta: { layout: 'main' },
     component: () => import('@/views/DetailRecordView.vue'),
