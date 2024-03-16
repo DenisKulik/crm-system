@@ -1,8 +1,8 @@
 <template>
   <div class="app-main-layout">
-    <AppNavbar/>
-    <AppSidebar/>
-    <main class="app-content">
+    <AppNavbar @toggleSidebarVisible="toggleSidebarVisible"/>
+    <AppSidebar :is-open="sidebarVisible"/>
+    <main class="app-content" :class="{full: !sidebarVisible}">
       <div class="app-page">
         <RouterView/>
       </div>
@@ -26,6 +26,14 @@ export default {
   components: {
     AppSidebar,
     AppNavbar,
+  },
+  data: () => ({
+    sidebarVisible: true,
+  }),
+  methods: {
+    toggleSidebarVisible() {
+      this.sidebarVisible = !this.sidebarVisible;
+    },
   },
 };
 </script>
