@@ -1,5 +1,9 @@
 # crm-system
 
+![CI](https://github.com/DenisKulik/crm-system/actions/workflows/github-actions.yml/badge.svg)
+
+[Demo](https://deniskulik.github.io/crm-system/)
+
 ## Project setup
 ```
 pnpm install
