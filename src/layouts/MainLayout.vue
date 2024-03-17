@@ -7,12 +7,7 @@
         <RouterView/>
       </div>
     </main>
-
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large blue" href="#">
-        <i class="large material-icons">add</i>
-      </a>
-    </div>
+    <ButtonAdd/>
   </div>
 </template>
 
@@ -20,10 +15,12 @@
 // components
 import AppNavbar from '@/components/app/AppNavbar.vue';
 import AppSidebar from '@/components/app/AppSidebar.vue';
+import ButtonAdd from '@/components/ui/ButtonAdd.vue';
 
 export default {
   name: 'MainLayout',
   components: {
+    ButtonAdd,
     AppSidebar,
     AppNavbar,
   },
