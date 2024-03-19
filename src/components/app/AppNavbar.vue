@@ -14,6 +14,7 @@
             class="dropdown-trigger black-text"
             href="#"
             data-target="dropdown"
+            ref="dropdown"
           >
             USER NAME
             <i class="material-icons right">arrow_drop_down</i>
@@ -21,13 +22,13 @@
 
           <ul id='dropdown' class='dropdown-content'>
             <li>
-              <a href="#" class="black-text">
+              <RouterLink to="/profile" class="black-text">
                 <i class="material-icons">account_circle</i>Профиль
-              </a>
+              </RouterLink>
             </li>
             <li class="divider" tabindex="-1"></li>
             <li>
-              <a href="#" class="black-text">
+              <a href="#" class="black-text" @click.prevent="logout">
                 <i class="material-icons">assignment_return</i>Выйти
               </a>
             </li>
@@ -42,9 +43,19 @@
 export default {
   name: 'AppNavbar',
   components: {},
+  mounted() {
+    // eslint-disable-next-line no-undef
+    M.Dropdown.init(this.$refs.dropdown, {
+      constrainWidth: false,
+      coverTrigger: false,
+    });
+  },
   methods: {
     toggleSidebarVisible() {
       this.$emit('toggleSidebarVisible');
+    },
+    logout() {
+      this.$router.push('/login?message=logout');
     },
   },
 };
