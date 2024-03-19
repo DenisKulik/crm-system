@@ -5,7 +5,7 @@
         <a href="#" @click.prevent="toggleSidebarVisible">
           <i class="material-icons black-text">dehaze</i>
         </a>
-        <span class="black-text">12.12.12</span>
+        <span class="black-text">{{ date | date('datetime') }}</span>
       </div>
 
       <ul class="right hide-on-small-and-down">
@@ -43,12 +43,24 @@
 export default {
   name: 'AppNavbar',
   components: {},
+  data: () => ({
+    date: new Date(),
+    interval: null,
+    dropdown: null,
+  }),
   mounted() {
     // eslint-disable-next-line no-undef
-    M.Dropdown.init(this.$refs.dropdown, {
+    this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false,
       coverTrigger: false,
     });
+    this.interval = setInterval(this.updateTime, 1000);
+  },
+  beforeDestroy() {
+    clearInterval(this.interval);
+    if (this.dropdown && this.dropdown.destroy) {
+      this.dropdown.destroy();
+    }
   },
   methods: {
     toggleSidebarVisible() {
@@ -56,6 +68,9 @@ export default {
     },
     logout() {
       this.$router.push('/login?message=logout');
+    },
+    updateTime() {
+      this.date = new Date();
     },
   },
 };
