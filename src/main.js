@@ -1,4 +1,5 @@
 import Vue from 'vue';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Vuelidate from '@vuelidate/core';
 
 import App from './App.vue';
