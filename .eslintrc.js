@@ -16,6 +16,8 @@ module.exports = {
     'linebreak-style': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'vuejs-accessibility/label-has-for': 'off',
+    'quote-props': ['error', 'as-needed'],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   overrides: [
     {
