@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card">
+  <form class="card auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
@@ -34,7 +34,7 @@
 
       <p class="center">
         Нет аккаунта?
-        <a href="/">Зарегистрироваться</a>
+        <RouterLink to="/register">Зарегистрироваться</RouterLink>
       </p>
     </div>
   </form>
@@ -44,5 +44,10 @@
 export default {
   name: 'LoginView',
   components: {},
+  methods: {
+    onSubmit() {
+      this.$router.push('/');
+    },
+  },
 };
 </script>
