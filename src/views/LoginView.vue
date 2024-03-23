@@ -73,6 +73,7 @@
 <script>
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { email, required, minLength } from 'vuelidate/lib/validators';
+import { messages } from '@/utils';
 
 export default {
   name: 'LoginView',
@@ -90,6 +91,11 @@ export default {
       required,
       minLength: minLength(6),
     },
+  },
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
   },
   methods: {
     /**
