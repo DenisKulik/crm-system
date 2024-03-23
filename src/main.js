@@ -1,6 +1,6 @@
 import Vue from 'vue';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import Vuelidate from '@vuelidate/core';
+import Vuelidate from 'vuelidate';
 
 import App from './App.vue';
 import './registerServiceWorker';
