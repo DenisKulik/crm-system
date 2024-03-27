@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 
 export default {
   actions: {
@@ -16,8 +16,11 @@ export default {
         throw e;
       }
     },
-    logout({ commit }) {
-      commit('setUser', null);
+    async logout({ commit }) {
+      await signOut(getAuth())
+        .then(() => {
+          commit('setUser', null);
+        });
     },
   },
   mutations: {
