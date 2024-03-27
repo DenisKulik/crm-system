@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // eslint-disable-next-line import/no-extraneous-dependencies
-// import { getDatabase } from 'firebase/database';
+import { getDatabase } from 'firebase/database';
 
 import App from './App.vue';
 import './registerServiceWorker';
@@ -36,7 +36,8 @@ const app = initializeApp({
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
-// const database = getDatabase(app);
+// Initialize Realtime Database and get a reference to the service
+getDatabase(app);
 
 onAuthStateChanged(auth, (user) => {
   if (user) {

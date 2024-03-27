@@ -1,4 +1,10 @@
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
+import { getDatabase, ref, set } from 'firebase/database';
 
 export default {
   actions: {
@@ -15,6 +21,32 @@ export default {
         console.log(e);
         throw e;
       }
+    },
+    async register({
+      commit,
+      dispatch,
+    }, {
+      email,
+      password,
+      name,
+    }) {
+      try {
+        const user = await createUserWithEmailAndPassword(getAuth(), email, password);
+        const uid = await dispatch('getUid');
+        const database = getDatabase();
+        await set(ref(database, `users/${uid}/info`), {
+          bill: 10000,
+          name,
+        });
+        commit('setUser', user);
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    },
+    getUid() {
+      const user = getAuth().currentUser;
+      return user ? user.uid : null;
     },
     async logout({ commit }) {
       await signOut(getAuth())
