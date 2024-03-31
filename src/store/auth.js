@@ -18,7 +18,7 @@ export default {
         const user = await signInWithEmailAndPassword(getAuth(), email, password);
         commit('setUser', user);
       } catch (e) {
-        console.log(e);
+        commit('setError', e);
         throw e;
       }
     },
@@ -40,7 +40,7 @@ export default {
         });
         commit('setUser', user);
       } catch (e) {
-        console.log(e);
+        commit('setError', e);
         throw e;
       }
     },
@@ -54,13 +54,5 @@ export default {
           commit('setUser', null);
         });
     },
-  },
-  mutations: {
-    setUser(state, user) {
-      state.user = user;
-    },
-  },
-  state: {
-    user: null,
   },
 };
