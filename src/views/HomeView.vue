@@ -2,14 +2,14 @@
   <div>
     <div class="page-title">
       <h3>Счет</h3>
-
       <button class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>
       </button>
     </div>
 
-    <div class="row">
-      <HomeBill/>
+    <AppLoader v-if="loading"/>
+    <div v-else class="row">
+      <HomeBill :rates="currency"/>
       <HomeCurrency/>
     </div>
   </div>
@@ -24,6 +24,15 @@ export default {
   components: {
     HomeCurrency,
     HomeBill,
+  },
+  data: () => ({
+    loading: true,
+    currency: [],
+  }),
+  async mounted() {
+    this.currency = await this.$store.dispatch('fetchCurrency');
+    console.log(this.currency);
+    this.loading = false;
   },
 };
 </script>

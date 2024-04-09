@@ -8,11 +8,12 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { getDatabase } from 'firebase/database';
 
+import AppLoader from '@/components/app/AppLoader.vue';
 import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import { dateFilter } from './filters';
+import { dateFilter, currencyFilter } from './filters';
 import { messagePlugin } from './utils';
 
 import 'materialize-css/dist/js/materialize.min';
@@ -22,6 +23,8 @@ Vue.config.productionTip = false;
 Vue.use(Vuelidate);
 Vue.use(messagePlugin);
 Vue.filter('date', dateFilter);
+Vue.filter('currency', currencyFilter);
+Vue.component('AppLoader', AppLoader);
 
 // Initialize Firebase
 const app = initializeApp({

@@ -27,7 +27,6 @@ export default {
         const info = await ref(db, `users/${uid}/info`);
         onValue(info, (snapshot) => {
           const data = snapshot.val();
-          console.log(data);
           if (data) commit('setInfo', data);
         });
       } catch (e) {

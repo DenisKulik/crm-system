@@ -45,7 +45,6 @@ export default {
       }
     },
     getUid() {
-      debugger;
       const user = getAuth().currentUser;
       return user ? user.uid : null;
     },
