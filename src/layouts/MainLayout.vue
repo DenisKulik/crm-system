@@ -1,13 +1,16 @@
 <template>
-  <div class="app-main-layout">
-    <AppNavbar @toggleSidebarVisible="toggleSidebarVisible"/>
-    <AppSidebar :is-open="sidebarVisible"/>
-    <main class="app-content" :class="{full: !sidebarVisible}">
-      <div class="app-page">
-        <RouterView/>
-      </div>
-    </main>
-    <ButtonAdd/>
+  <div>
+    <AppLoader v-if="loading"/>
+    <div v-else class="app-main-layout">
+      <AppNavbar @toggleSidebarVisible="toggleSidebarVisible"/>
+      <AppSidebar :is-open="sidebarVisible"/>
+      <main class="app-content" :class="{full: !sidebarVisible}">
+        <div class="app-page">
+          <RouterView/>
+        </div>
+      </main>
+      <ButtonAdd/>
+    </div>
   </div>
 </template>
 
@@ -26,11 +29,13 @@ export default {
   },
   data: () => ({
     sidebarVisible: true,
+    loading: true,
   }),
   async mounted() {
     if (!Object.keys(this.$store.getters.info).length) {
       await this.$store.dispatch('fetchInfo');
     }
+    this.loading = false;
   },
   methods: {
     toggleSidebarVisible() {

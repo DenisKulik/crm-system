@@ -2,9 +2,7 @@
   <div>
     <div class="page-title">
       <h3>Счет</h3>
-      <button class="btn waves-effect waves-light btn-small">
-        <i class="material-icons">refresh</i>
-      </button>
+      <ButtonRefresh @onRefresh="refreshCurrency"/>
     </div>
 
     <AppLoader v-if="loading"/>
@@ -23,10 +21,12 @@
 <script>
 import HomeBill from '@/components/home/HomeBill.vue';
 import HomeCurrency from '@/components/home/HomeCurrency.vue';
+import ButtonRefresh from '@/components/ui/ButtonRefresh.vue';
 
 export default {
   name: 'HomeView',
   components: {
+    ButtonRefresh,
     HomeCurrency,
     HomeBill,
   },
@@ -37,6 +37,13 @@ export default {
   async mounted() {
     this.currency = await this.$store.dispatch('fetchCurrency');
     this.loading = false;
+  },
+  methods: {
+    async refreshCurrency() {
+      this.loading = true;
+      this.currency = await this.$store.dispatch('fetchCurrency');
+      this.loading = false;
+    },
   },
 };
 </script>
