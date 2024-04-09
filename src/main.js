@@ -39,16 +39,10 @@ const auth = getAuth(app);
 // Initialize Realtime Database and get a reference to the service
 getDatabase(app);
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    console.log('Пользователь аутентифицирован:', user.uid);
-  } else {
-    console.log('Пользователь не аутентифицирован');
-  }
+onAuthStateChanged(auth, () => {
+  new Vue({
+    router,
+    store,
+    render: (h) => h(App),
+  }).$mount('#app');
 });
-
-new Vue({
-  router,
-  store,
-  render: (h) => h(App),
-}).$mount('#app');

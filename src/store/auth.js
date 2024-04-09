@@ -45,6 +45,7 @@ export default {
       }
     },
     getUid() {
+      debugger;
       const user = getAuth().currentUser;
       return user ? user.uid : null;
     },
@@ -53,6 +54,7 @@ export default {
         .then(() => {
           commit('setUser', null);
         });
+      await commit('clearInfo');
     },
   },
 };

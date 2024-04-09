@@ -27,6 +27,11 @@ export default {
   data: () => ({
     sidebarVisible: true,
   }),
+  async mounted() {
+    if (!Object.keys(this.$store.getters.info).length) {
+      await this.$store.dispatch('fetchInfo');
+    }
+  },
   methods: {
     toggleSidebarVisible() {
       this.sidebarVisible = !this.sidebarVisible;
