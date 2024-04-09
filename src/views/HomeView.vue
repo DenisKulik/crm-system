@@ -9,8 +9,13 @@
 
     <AppLoader v-if="loading"/>
     <div v-else class="row">
-      <HomeBill :rates="currency"/>
-      <HomeCurrency/>
+      <HomeBill
+        :rates="currency.data"
+      />
+      <HomeCurrency
+        :rates="currency.data"
+        :date="currency.meta.last_updated_at"
+      />
     </div>
   </div>
 </template>
@@ -31,7 +36,6 @@ export default {
   }),
   async mounted() {
     this.currency = await this.$store.dispatch('fetchCurrency');
-    console.log(this.currency);
     this.loading = false;
   },
 };

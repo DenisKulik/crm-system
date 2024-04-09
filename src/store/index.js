@@ -28,9 +28,9 @@ export default new Vuex.Store({
   actions: {
     async fetchCurrency() {
       const key = process.env.VUE_APP_API_KEY;
-      const res = await fetch(`https://api.currencyapi.com/v3/latest?apikey=${key}&currencies=EUR%2CUSD%2CRUB&base_currency=RUB`);
+      const res = await fetch(`https://api.currencyapi.com/v3/latest?apikey=${key}&currencies=EUR%2CUSD%2CRUB`);
       const data = await res.json();
-      return data.data;
+      return data;
     },
   },
   modules: {

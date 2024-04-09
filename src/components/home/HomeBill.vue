@@ -31,7 +31,7 @@ export default {
   }),
   computed: {
     base() {
-      return this.$store.getters.info.bill;
+      return this.$store.getters.info.bill / (this.rates.RUB.value / this.rates.USD.value);
     },
   },
   methods: {
