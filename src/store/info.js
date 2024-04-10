@@ -21,7 +21,6 @@ export default {
       dispatch,
     }) {
       try {
-        await dispatch('getUid');
         const db = getDatabase();
         const uid = await dispatch('getUid');
         const info = await ref(db, `users/${uid}/info`);
