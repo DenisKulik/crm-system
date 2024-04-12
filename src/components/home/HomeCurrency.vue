@@ -39,7 +39,7 @@ export default {
       default: () => ({}),
     },
     date: {
-      type: Object,
+      type: String,
       default: new Date(),
     },
   },

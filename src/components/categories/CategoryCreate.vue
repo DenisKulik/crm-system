@@ -56,7 +56,7 @@ export default {
   props: {},
   data: () => ({
     title: '',
-    limit: 1,
+    limit: 100,
   }),
   validations: {
     title: { required },
