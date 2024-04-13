@@ -134,9 +134,7 @@ export default {
     // init select
     if (this.categories.length) {
       this.$nextTick(() => {
-        // eslint-disable-next-line no-undef
         this.select = M.FormSelect.init(this.$refs.select);
-        // eslint-disable-next-line no-undef
         M.updateTextFields();
       });
     }

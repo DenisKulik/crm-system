@@ -63,7 +63,10 @@ export default {
             const categories = ref(db, `users/${uid}/categories`);
             onValue(categories, (snapshot) => {
               const data = snapshot.val();
-              if (!data) resolve([]);
+              if (!data) {
+                resolve([]);
+                return;
+              }
               const categoriesArray = Object.keys(data)
                 .map((key) => ({
                   ...data[key],

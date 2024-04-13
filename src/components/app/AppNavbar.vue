@@ -49,7 +49,6 @@ export default {
     dropdown: null,
   }),
   mounted() {
-    // eslint-disable-next-line no-undef
     this.dropdown = M.Dropdown.init(this.$refs.dropdown, {
       constrainWidth: false,
       coverTrigger: false,

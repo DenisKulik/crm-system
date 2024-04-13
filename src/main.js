@@ -1,11 +1,7 @@
 import Vue from 'vue';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Vuelidate from 'vuelidate';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { initializeApp } from 'firebase/app';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { getDatabase } from 'firebase/database';
 
 import AppLoader from '@/components/app/AppLoader.vue';

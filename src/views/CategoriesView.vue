@@ -48,7 +48,6 @@ export default {
       const idx = this.categories.findIndex((c) => c.id === category.id);
       this.categories[idx].title = category.title;
       this.categories[idx].limit = category.limit;
-      // eslint-disable-next-line no-plusplus
       this.updateCount++;
     },
   },

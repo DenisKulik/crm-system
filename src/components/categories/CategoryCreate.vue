@@ -63,7 +63,6 @@ export default {
     limit: { minValue: minValue(1), required },
   },
   mounted() {
-    // eslint-disable-next-line no-undef
     M.updateTextFields();
   },
   methods: {

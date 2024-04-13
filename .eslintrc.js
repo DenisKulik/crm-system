@@ -17,6 +17,10 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'vuejs-accessibility/label-has-for': 'off',
     'quote-props': ['error', 'as-needed'],
+    'no-param-reassign': 0,
+    'no-nested-ternary': 0,
+    'no-plusplus': 0,
+    'no-undef': 0,
     'import/no-extraneous-dependencies': ['error', {
       devDependencies: true,
       optionalDependencies: false,

@@ -101,7 +101,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { email, required, minLength } from 'vuelidate/lib/validators';
 
 export default {
@@ -131,9 +130,6 @@ export default {
     },
   },
   methods: {
-    /**
-     * Submit form handler
-     */
     async onSubmit() {
       if (this.$v.$invalid) {
         this.$v.$touch();
