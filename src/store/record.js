@@ -15,7 +15,6 @@ export default {
       record,
     ) {
       try {
-        console.log(record);
         const db = getDatabase();
         const uid = await dispatch('getUid');
         return await push(ref(db, `users/${uid}/records`), record);
