@@ -18,7 +18,7 @@
           <strong>{{ category.title }}:</strong>
           {{ category.spend | currency('RUB') }} из {{ category.limit | currency('RUB') }}
         </p>
-        <div class="progress">
+        <div class="progress" v-tooltip="category.tooltip">
           <div
             class="determinate"
             :class="category.progressColor"
@@ -32,6 +32,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { currencyFilter } from '@/filters';
 
 export default {
   name: 'PlanningView',
@@ -52,7 +53,6 @@ export default {
 
   methods: {
     formatCategories(categories, records = []) {
-      console.log(categories, records);
       return categories.map((category) => {
         const spend = records
           .filter((record) => record.categoryID === category.id)
@@ -67,11 +67,17 @@ export default {
             ? 'yellow'
             : 'red';
 
+        const tooltipValue = category.limit - spend;
+        const tooltip = `${tooltipValue < 0
+          ? 'Превышение на'
+          : 'Осталось'} ${currencyFilter(Math.abs(tooltipValue))}`;
+
         return {
           ...category,
           progressPercent,
           progressColor,
           spend,
+          tooltip,
         };
       });
     },
