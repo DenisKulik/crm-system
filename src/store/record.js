@@ -1,5 +1,5 @@
 import {
-  getDatabase, ref, push, onValue,
+  getDatabase, ref, push, onValue, child,
 } from 'firebase/database';
 
 export default {
@@ -46,6 +46,34 @@ export default {
                   id: key,
                 }));
               resolve(recordsArray);
+            });
+          } catch (e) {
+            commit('setError', e);
+            reject(e);
+          }
+        })();
+      });
+    },
+    fetchRecordById({
+      commit,
+      dispatch,
+    }, id) {
+      return new Promise((resolve, reject) => {
+        (async () => {
+          try {
+            const db = getDatabase();
+            const uid = await dispatch('getUid');
+            const record = child(ref(db, `users/${uid}/records`), id);
+            onValue(record, (snapshot) => {
+              const data = snapshot.val();
+              if (!data) {
+                resolve({});
+                return;
+              }
+              resolve({
+                ...data,
+                id,
+              });
             });
           } catch (e) {
             commit('setError', e);

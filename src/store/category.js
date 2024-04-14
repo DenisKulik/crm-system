@@ -81,5 +81,36 @@ export default {
         })();
       });
     },
+    fetchCategoryById(
+      {
+        commit,
+        dispatch,
+      },
+      id,
+    ) {
+      return new Promise((resolve, reject) => {
+        (async () => {
+          try {
+            const db = getDatabase();
+            const uid = await dispatch('getUid');
+            const category = child(ref(db, `users/${uid}/categories`), id);
+            onValue(category, (snapshot) => {
+              const data = snapshot.val();
+              if (!data) {
+                resolve({});
+                return;
+              }
+              resolve({
+                ...data,
+                id,
+              });
+            });
+          } catch (e) {
+            commit('setError', e);
+            reject(e);
+          }
+        })();
+      });
+    },
   },
 };
