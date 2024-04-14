@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
+import Paginate from 'vuejs-paginate';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
@@ -21,8 +22,9 @@ Vue.use(Vuelidate);
 Vue.use(messagePlugin);
 Vue.filter('date', dateFilter);
 Vue.filter('currency', currencyFilter);
-Vue.component('AppLoader', AppLoader);
 Vue.directive('tooltip', tooltipDirective);
+Vue.component('AppLoader', AppLoader);
+Vue.component('AppPaginate', Paginate);
 
 // Initialize Firebase
 const app = initializeApp({

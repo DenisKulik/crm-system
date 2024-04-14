@@ -14,34 +14,44 @@
       <RouterLink to="/record">Добавьте первую запись</RouterLink>
     </p>
     <section v-else>
-      <HistoryTable :records="records"/>
+      <HistoryTable :records="items"/>
+
+      <AppPaginate
+        v-model="currentPage"
+        :page-count="pageCount"
+        :prev-text="'Назад'"
+        :next-text="'Вперед'"
+        :container-class="'pagination'"
+        :page-class="'waves-effect'"
+        :click-handler="pageChangeHandler"
+      />
     </section>
   </div>
 </template>
 
 <script>
+import { paginationMixin } from '@/mixins';
 import HistoryTable from '@/components/history/HistoryTable.vue';
 
 export default {
   name: 'HistoryView',
   components: { HistoryTable },
+  mixins: [paginationMixin],
   data: () => ({
     loading: true,
     records: [],
-    categories: [],
   }),
   async mounted() {
-    // this.records = await this.$store.dispatch('fetchRecords');
-    const records = await this.$store.dispatch('fetchRecords');
-    this.categories = await this.$store.dispatch('fetchCategories');
-    this.records = this.formatRecords(records);
+    this.records = await this.$store.dispatch('fetchRecords');
+    const categories = await this.$store.dispatch('fetchCategories');
+    this.setupPagination(this.formatRecords(this.records, categories));
     this.loading = false;
   },
   methods: {
-    formatRecords(records) {
+    formatRecords(records, categories) {
       return records.map((record) => ({
         ...record,
-        categoryName: this.categories.find((category) => category.id === record.categoryID).title,
+        categoryName: categories.find((category) => category.id === record.categoryID).title,
         typeClass: record.type === 'income' ? 'green' : 'red',
         typeText: record.type === 'income' ? 'Доход' : 'Расход',
       }));
