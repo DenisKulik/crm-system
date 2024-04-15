@@ -17,5 +17,10 @@
   "Message_EmailIncorrect": "Введите корректный Email",
   "Password": "Пароль",
   "Message_EnterPassword": "Введите пароль",
-  "NoAccount": "Нет аккаунта?"
+  "NoAccount": "Нет аккаунта?",
+  "BillInCurrency": "Счет в валюте",
+  "ExchangeRate": "Курс валют",
+  "Currency": "Валюта",
+  "Rate": "Курс",
+  "Date": "Дата"
 }

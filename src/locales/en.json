@@ -17,5 +17,10 @@
   "Message_EmailIncorrect": "Enter correct Email",
   "Password": "Password",
   "Message_EnterPassword": "Enter password",
-  "NoAccount": "Don't have an account?"
+  "NoAccount": "Don't have an account?",
+  "BillInCurrency": "Bill in currency",
+  "ExchangeRate": "Exchange rate",
+  "Currency": "Currency",
+  "Rate": "Rate",
+  "Date": "Date"
 }
