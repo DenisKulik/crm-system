@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>{{ 'Profile' | localize }}</h3>
     </div>
 
     <form class="form" @submit.prevent="submitHandler">
@@ -12,26 +12,27 @@
           v-model="name"
           :class="{invalid: $v.name.$error}"
         >
-        <label for="description">Имя</label>
+        <label for="description">{{ 'Name' | localize }}</label>
         <span
           v-if="$v.name.$error"
           class="helper-text invalid"
         >
-          Имя должно быть длиннее {{ $v.name.$params.minLength.min }} символов
+          {{ 'Name' | localize }} {{ 'Message_MustBeLonger' | localize
+          }} {{ $v.name.$params.minLength.min }} {{ 'Message_Characters' | localize }}
         </span>
       </div>
 
       <div class="switch">
         <label>
           English
-          <input type="checkbox">
+          <input v-model="isRuLocale" type="checkbox">
           <span class="lever"></span>
           Русский
         </label>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Обновить
+        {{ 'Update' | localize }}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -47,6 +48,7 @@ export default {
   components: {},
   data: () => ({
     name: '',
+    isRuLocale: true,
   }),
   validations: {
     name: {
@@ -56,6 +58,7 @@ export default {
   },
   mounted() {
     this.name = this.info.name;
+    this.isRuLocale = this.info.locale === 'ru-RU';
     this.$nextTick(() => {
       M.updateTextFields();
     });
@@ -71,11 +74,10 @@ export default {
         return;
       }
 
-      if (this.name === this.info.name) {
-        return;
-      }
-
-      await this.updateInfo({ name: this.name });
+      await this.updateInfo({
+        name: this.name,
+        locale: this.isRuLocale ? 'ru-RU' : 'en-US',
+      });
     },
   },
 };

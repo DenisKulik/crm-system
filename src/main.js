@@ -10,7 +10,7 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import { dateFilter, currencyFilter } from './filters';
+import { dateFilter, currencyFilter, localizeFilter } from './filters';
 import { messagePlugin } from './utils';
 import { tooltipDirective } from './directives';
 
@@ -22,6 +22,7 @@ Vue.use(Vuelidate);
 Vue.use(messagePlugin);
 Vue.filter('date', dateFilter);
 Vue.filter('currency', currencyFilter);
+Vue.filter('localize', localizeFilter);
 Vue.directive('tooltip', tooltipDirective);
 Vue.component('AppLoader', AppLoader);
 Vue.component('AppPaginate', Paginate);

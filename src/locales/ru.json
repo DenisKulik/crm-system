@@ -1,0 +1,13 @@
+{
+ "Profile": "Профиль",
+ "Name": "Имя",
+ "Message_MustBeLonger": "должно быть длиннее",
+ "Message_Characters": "символов",
+ "Update": "Обновить",
+ "Exit": "Выйти",
+ "Bill": "Счет",
+ "History": "История",
+ "Planning": "Планирование",
+ "NewRecord": "Новая запись",
+ "Categories": "Категории"
+}

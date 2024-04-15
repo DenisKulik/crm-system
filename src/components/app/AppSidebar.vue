@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { localizeFilter } from '@/filters';
+
 export default {
   name: 'AppSidebar',
   props: {
@@ -25,24 +27,24 @@ export default {
   data: () => ({
     links: [
       {
-        name: 'Счет',
+        name: localizeFilter('Bill'),
         url: '/',
         exact: true,
       },
       {
-        name: 'История',
+        name: localizeFilter('History'),
         url: '/history',
       },
       {
-        name: 'Планирование',
+        name: localizeFilter('Planning'),
         url: '/planning',
       },
       {
-        name: 'Новая запись',
+        name: localizeFilter('NewRecord'),
         url: '/record',
       },
       {
-        name: 'Категории',
+        name: localizeFilter('Categories'),
         url: '/categories',
       },
     ],

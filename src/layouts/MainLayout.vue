@@ -3,7 +3,7 @@
     <AppLoader v-if="loading"/>
     <div v-else class="app-main-layout">
       <AppNavbar @toggleSidebarVisible="toggleSidebarVisible"/>
-      <AppSidebar :is-open="sidebarVisible"/>
+      <AppSidebar :is-open="sidebarVisible" :key="locale"/>
       <main class="app-content" :class="{full: !sidebarVisible}">
         <div class="app-page">
           <RouterView/>
@@ -44,6 +44,9 @@ export default {
     ...mapGetters(['info']),
     error() {
       return this.$store.getters.error;
+    },
+    locale() {
+      return this.$store.getters.info.locale || 'ru-Ru';
     },
   },
   methods: {
