@@ -4,10 +4,18 @@
   "Message_MustBeLonger": "must be longer than",
   "Message_Characters": "characters",
   "Update": "Update",
+  "Enter": "Enter",
   "Exit": "Exit",
+  "Register": "Register",
   "Bill": "Bill",
   "History": "History",
   "Planning": "Planning",
   "NewRecord": "New record",
-  "Categories": "Categories"
+  "Categories": "Categories",
+  "CRM_Title": "Home accounting",
+  "Message_EmailEmpty": "Email field must not be empty",
+  "Message_EmailIncorrect": "Enter correct Email",
+  "Password": "Password",
+  "Message_EnterPassword": "Enter password",
+  "NoAccount": "Don't have an account?"
 }
