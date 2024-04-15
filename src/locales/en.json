@@ -35,5 +35,10 @@
   "Back": "Back",
   "Next": "Next",
   "Income": "Income",
-  "Outcome": "Outcome"
+  "Outcome": "Outcome",
+  "NoCategories": "No categories yet.",
+  "AddNewCategory": "Add new category",
+  "Out": "out",
+  "Excess": "excess by",
+  "Left": "left"
 }
