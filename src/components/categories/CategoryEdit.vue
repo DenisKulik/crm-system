@@ -97,7 +97,9 @@ export default {
   },
   mounted() {
     this.select = M.FormSelect.init(this.$refs.select);
-    M.updateTextFields();
+    this.$nextTick(() => {
+      M.updateTextFields();
+    });
   },
   beforeDestroy() {
     if (this.select && this.select.destroy) {

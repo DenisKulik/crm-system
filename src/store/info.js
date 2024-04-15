@@ -26,9 +26,14 @@ export default {
         const db = getDatabase();
         const uid = await dispatch('getUid');
         const info = await ref(db, `users/${uid}/info`);
-        onValue(info, (snapshot) => {
-          const data = snapshot.val();
-          if (data) commit('setInfo', data);
+        return new Promise((resolve) => {
+          onValue(info, (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+              commit('setInfo', data);
+              resolve(data);
+            }
+          });
         });
       } catch (e) {
         commit('setError', e);

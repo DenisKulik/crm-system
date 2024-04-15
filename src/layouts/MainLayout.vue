@@ -21,6 +21,7 @@ import { messages } from '@/utils';
 import AppNavbar from '@/components/app/AppNavbar.vue';
 import AppSidebar from '@/components/app/AppSidebar.vue';
 import ButtonAdd from '@/components/ui/ButtonAdd.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'MainLayout',
@@ -34,12 +35,13 @@ export default {
     loading: true,
   }),
   async mounted() {
-    if (!Object.keys(this.$store.getters.info).length) {
+    if (!Object.keys(this.info).length) {
       await this.$store.dispatch('fetchInfo');
     }
     this.loading = false;
   },
   computed: {
+    ...mapGetters(['info']),
     error() {
       return this.$store.getters.error;
     },

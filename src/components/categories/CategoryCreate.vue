@@ -63,7 +63,9 @@ export default {
     limit: { minValue: minValue(1), required },
   },
   mounted() {
-    M.updateTextFields();
+    this.$nextTick(() => {
+      M.updateTextFields();
+    });
   },
   methods: {
     async submitHandler() {
