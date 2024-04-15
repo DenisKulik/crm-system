@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{ 'HistoryTitle' | localize }}</h3>
     </div>
     <HistoryChart
       :records="records"
@@ -9,16 +9,16 @@
     />
     <AppLoader v-if="loading"/>
     <p class="center" v-else-if="!records.length">
-      Записей пока нет.
-      <RouterLink to="/record">Добавьте первую запись</RouterLink>
+      {{ 'NoRecords' | localize }}
+      <RouterLink to="/record">{{ 'AddNewRecord' | localize }}</RouterLink>
     </p>
     <section v-else>
       <HistoryTable :records="items"/>
       <AppPaginate
         v-model="currentPage"
         :page-count="pageCount"
-        :prev-text="'Назад'"
-        :next-text="'Вперед'"
+        :prev-text="prevButtonTitle"
+        :next-text="nextButtonTitle"
         :container-class="'pagination'"
         :page-class="'waves-effect'"
         :click-handler="pageChangeHandler"
@@ -30,6 +30,8 @@
 <script>
 // mixins
 import { paginationMixin } from '@/mixins';
+// filters
+import { localizeFilter } from '@/filters';
 // components
 import HistoryTable from '@/components/history/HistoryTable.vue';
 import HistoryChart from '@/components/history/HistoryChart.vue';
@@ -52,13 +54,21 @@ export default {
     this.setupPagination(this.formatRecords(this.records, this.categories));
     this.loading = false;
   },
+  computed: {
+    prevButtonTitle() {
+      return localizeFilter('Back');
+    },
+    nextButtonTitle() {
+      return localizeFilter('Next');
+    },
+  },
   methods: {
     formatRecords(records, categories) {
       return records.map((record) => ({
         ...record,
         categoryName: categories.find((category) => category.id === record.categoryID).title,
         typeClass: record.type === 'income' ? 'green' : 'red',
-        typeText: record.type === 'income' ? 'Доход' : 'Расход',
+        typeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
       }));
     },
   },

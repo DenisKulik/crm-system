@@ -22,5 +22,18 @@
   "ExchangeRate": "Курс валют",
   "Currency": "Валюта",
   "Rate": "Курс",
-  "Date": "Дата"
+  "Date": "Дата",
+  "HistoryTitle": "История записей",
+  "NoRecords": "Записей пока нет.",
+  "AddNewRecord": "Добавьте первую запись",
+  "CategoryExpenses": "Расходы по категории",
+  "Amount": "Сумма",
+  "Category": "Категория",
+  "Type": "Тип",
+  "Open": "Открыть",
+  "ViewRecord": "Посмотреть запись",
+  "Back": "Назад",
+  "Next": "Вперед",
+  "Income": "Доход",
+  "Outcome": "Расход"
 }

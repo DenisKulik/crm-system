@@ -22,5 +22,18 @@
   "ExchangeRate": "Exchange rate",
   "Currency": "Currency",
   "Rate": "Rate",
-  "Date": "Date"
+  "Date": "Date",
+  "HistoryTitle": "Post history",
+  "NoRecords": "No recordings yet.",
+  "AddNewRecord": "Add new record",
+  "CategoryExpenses": "Category expenses",
+  "Amount": "Amount",
+  "Category": "Category",
+  "Type": "Type",
+  "Open": "Open",
+  "ViewRecord": "View record",
+  "Back": "Back",
+  "Next": "Next",
+  "Income": "Income",
+  "Outcome": "Outcome"
 }

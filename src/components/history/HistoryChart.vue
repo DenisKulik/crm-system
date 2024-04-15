@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { localizeFilter } from '@/filters';
+
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Pie as PieChart } from 'vue-chartjs';
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -51,7 +53,7 @@ export default {
         labels: this.categories.map((category) => category.title),
         datasets: [
           {
-            label: 'Расходы по категории',
+            label: localizeFilter('CategoryExpenses'),
             data: this.categories.map((category) => this.records.reduce((total, record) => {
               if (record.categoryID === category.id && record.type === 'outcome') {
                 total += Number(record.amount);
