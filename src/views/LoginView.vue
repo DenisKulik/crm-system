@@ -107,12 +107,8 @@ export default {
         email: this.email,
         password: this.password,
       };
-      try {
-        await this.$store.dispatch('login', formData);
-        this.$router.push('/');
-      } catch (e) {
-        console.log(e);
-      }
+      await this.$store.dispatch('login', formData);
+      if (this.$route.path !== '/') this.$router.push('/');
     },
   },
 };

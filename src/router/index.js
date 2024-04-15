@@ -91,7 +91,7 @@ router.beforeEach((to, from, next) => {
   const requireAuth = to.meta.auth;
 
   if (requireAuth && !currentUser) {
-    next('/login?message=auth');
+    next('/login');
   } else {
     next();
   }

@@ -72,7 +72,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('logout');
-      this.$router.push('/login?message=logout');
+      this.$router.push('/login');
     },
     updateTime() {
       this.date = new Date();
