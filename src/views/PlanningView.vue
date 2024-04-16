@@ -39,6 +39,9 @@ import { currencyFilter, localizeFilter } from '@/filters';
 
 export default {
   name: 'PlanningView',
+  metaInfo() {
+    return { title: localizeFilter('Planning') };
+  },
   components: {},
   data: () => ({
     loading: true,

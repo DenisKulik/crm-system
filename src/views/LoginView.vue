@@ -68,9 +68,13 @@
 <script>
 import { email, required, minLength } from 'vuelidate/lib/validators';
 import { messages } from '@/utils';
+import { localizeFilter } from '@/filters';
 
 export default {
   name: 'LoginView',
+  metaInfo() {
+    return { title: localizeFilter('LogIn') };
+  },
   components: {},
   data: () => ({
     email: '',

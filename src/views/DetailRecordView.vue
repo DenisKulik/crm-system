@@ -1,7 +1,7 @@
 <template>
   <div>
     <AppLoader v-if="loading"/>
-    <p class="center" v-else-if="!record">Запись не найдена</p>
+    <p class="center" v-else-if="!record">{{ 'DetailRecordError' | localize }}</p>
     <div v-else>
       <div class="breadcrumb-wrap">
         <RouterLink to="/history" class="breadcrumb">
@@ -32,6 +32,9 @@ import { localizeFilter } from '../filters';
 
 export default {
   name: 'DetailRecordView',
+  metaInfo() {
+    return { title: localizeFilter('History') };
+  },
   methods: { localizeFilter },
   components: {},
   data: () => ({

@@ -22,9 +22,13 @@
 import HomeBill from '@/components/home/HomeBill.vue';
 import HomeCurrency from '@/components/home/HomeCurrency.vue';
 import ButtonRefresh from '@/components/ui/ButtonRefresh.vue';
+import { localizeFilter } from '@/filters';
 
 export default {
   name: 'HomeView',
+  metaInfo() {
+    return { title: localizeFilter('Bill') };
+  },
   components: {
     ButtonRefresh,
     HomeCurrency,

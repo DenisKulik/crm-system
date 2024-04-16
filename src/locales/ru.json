@@ -18,6 +18,7 @@
   "Message_EmailIncorrect": "Введите корректный Email",
   "Password": "Пароль",
   "Message_EnterPassword": "Введите пароль",
+  "Message_EnterName": "Введите имя",
   "NoAccount": "Нет аккаунта?",
   "BillInCurrency": "Счет в валюте",
   "ExchangeRate": "Курс валют",
@@ -55,5 +56,7 @@
   "Title": "Название",
   "EnterCategoryTitle": "Введите название категории",
   "Limit": "Лимит",
-  "Edit": "Редактировать"
+  "Edit": "Редактировать",
+  "RulesAgreement": "С правилами согласен",
+  "HasAccount": "Уже есть аккаунт?"
 }

@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuelidate from 'vuelidate';
 import Paginate from 'vuejs-paginate';
+import VueMeta from 'vue-meta';
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
@@ -20,6 +21,7 @@ Vue.config.productionTip = false;
 
 Vue.use(Vuelidate);
 Vue.use(messagePlugin);
+Vue.use(VueMeta, { refreshOnceOnNavigation: true });
 Vue.filter('date', dateFilter);
 Vue.filter('currency', currencyFilter);
 Vue.filter('localize', localizeFilter);

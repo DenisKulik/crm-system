@@ -42,9 +42,13 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { minLength, required } from 'vuelidate/lib/validators';
+import { localizeFilter } from '@/filters';
 
 export default {
   name: 'ProfileView',
+  metaInfo() {
+    return { title: localizeFilter('Profile') };
+  },
   components: {},
   data: () => ({
     name: '',

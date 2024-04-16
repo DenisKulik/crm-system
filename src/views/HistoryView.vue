@@ -38,6 +38,9 @@ import HistoryChart from '@/components/history/HistoryChart.vue';
 
 export default {
   name: 'HistoryView',
+  metaInfo() {
+    return { title: localizeFilter('History') };
+  },
   components: {
     HistoryChart,
     HistoryTable,

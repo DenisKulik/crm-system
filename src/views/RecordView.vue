@@ -100,9 +100,13 @@
 import { mapGetters } from 'vuex';
 import { minValue, required } from 'vuelidate/lib/validators';
 import AppLoader from '@/components/app/AppLoader.vue';
+import { localizeFilter } from '@/filters';
 
 export default {
   name: 'RecordView',
+  metaInfo() {
+    return { title: localizeFilter('NewRecord') };
+  },
   components: { AppLoader },
   data: () => ({
     select: null,

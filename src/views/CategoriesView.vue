@@ -23,9 +23,13 @@
 import CategoryCreate from '@/components/categories/CategoryCreate.vue';
 import CategoryEdit from '@/components/categories/CategoryEdit.vue';
 import AppLoader from '@/components/app/AppLoader.vue';
+import { localizeFilter } from '@/filters';
 
 export default {
   name: 'CategoriesView',
+  metaInfo() {
+    return { title: localizeFilter('Categories') };
+  },
   components: {
     AppLoader,
     CategoryEdit,

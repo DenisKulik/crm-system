@@ -18,6 +18,7 @@
   "Message_EmailIncorrect": "Enter correct Email",
   "Password": "Password",
   "Message_EnterPassword": "Enter password",
+  "Message_EnterName": "Enter name",
   "NoAccount": "Don't have an account?",
   "BillInCurrency": "Bill in currency",
   "ExchangeRate": "Exchange rate",
@@ -55,5 +56,7 @@
   "Title": "Title",
   "EnterCategoryTitle": "Enter category title",
   "Limit": "Limit",
-  "Edit": "Edit"
+  "Edit": "Edit",
+  "RulesAgreement": "I agree with the rules",
+  "HasAccount": "Already have an account?"
 }
