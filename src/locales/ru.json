@@ -44,5 +44,7 @@
   "LogIn": "Войдите в систему",
   "LoggOut": "Вы вышли из системы",
   "InvalidCredential": "Неверный логин или пароль",
-  "EmailAlreadyInUse": "Пользователь с таким email уже существует"
+  "EmailAlreadyInUse": "Пользователь с таким email уже существует",
+  "DetailRecordError": "Запись не найдена",
+  "Description": "Описание"
 }

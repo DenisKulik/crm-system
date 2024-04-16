@@ -44,5 +44,7 @@
   "LogIn": "Log in",
   "LoggOut": "You've logged out",
   "InvalidCredential": "Invalid login or password",
-  "EmailAlreadyInUse": "User with this email already exists"
+  "EmailAlreadyInUse": "User with this email already exists",
+  "DetailRecordError": "Record not found",
+  "Description": "Description"
 }
