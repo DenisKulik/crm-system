@@ -71,8 +71,12 @@ export default {
       this.$emit('toggleSidebarVisible');
     },
     async logout() {
-      await this.$store.dispatch('logout');
-      this.$router.push('/login');
+      try {
+        await this.$store.dispatch('logout');
+        this.$router.push('/login');
+      } catch (e) {
+        console.log(e);
+      }
     },
     updateTime() {
       this.date = new Date();

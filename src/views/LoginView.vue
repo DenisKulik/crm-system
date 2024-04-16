@@ -102,8 +102,12 @@ export default {
         email: this.email,
         password: this.password,
       };
-      await this.$store.dispatch('login', formData);
-      if (this.$route.path !== '/') this.$router.push('/');
+      try {
+        await this.$store.dispatch('login', formData);
+        if (this.$route.path !== '/') this.$router.push('/');
+      } catch (e) {
+        console.log(e);
+      }
     },
   },
 };

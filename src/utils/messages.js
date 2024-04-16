@@ -1,6 +1,8 @@
+import { localizeFilter } from '@/filters';
+
 export default {
-  login: 'Войдите в систему',
-  logout: 'Вы вышли из системы',
-  'auth/invalid-credential': 'Неверный логин или пароль',
-  'auth/email-already-in-use': 'Пользователь с таким email уже существует',
+  login: localizeFilter('LogIn'),
+  logout: localizeFilter('LoggOut'),
+  'auth/invalid-credential': localizeFilter('InvalidCredential'),
+  'auth/email-already-in-use': localizeFilter('EmailAlreadyInUse'),
 };

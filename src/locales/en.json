@@ -40,5 +40,9 @@
   "AddNewCategory": "Add new category",
   "Out": "out",
   "Excess": "excess by",
-  "Left": "left"
+  "Left": "left",
+  "LogIn": "Log in",
+  "LoggOut": "You've logged out",
+  "InvalidCredential": "Invalid login or password",
+  "EmailAlreadyInUse": "User with this email already exists"
 }
