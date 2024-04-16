@@ -1,5 +1,5 @@
 <template>
-  <ul class="sidenav app-sidenav" :class="{open: isOpen}">
+  <ul class="sidenav app-sidenav grey darken-4" :class="{open: isOpen}">
     <RouterLink
       v-for="link in links"
       :key="link.url"
@@ -8,7 +8,7 @@
       tag="li"
       active-class="active"
     >
-      <a href="#" class="waves-effect waves-orange pointer">{{ link.name }}</a>
+      <a href="#" class="waves-effect waves-light white-text pointer">{{ link.name }}</a>
     </RouterLink>
   </ul>
 </template>

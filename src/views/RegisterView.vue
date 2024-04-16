@@ -1,5 +1,5 @@
 <template>
-  <form class="card auth-card" @submit.prevent="onSubmit">
+  <form class="card auth-card grey lighten-5" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">{{ 'CRM_Title' | localize }}</span>
       <div class="input-field">

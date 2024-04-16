@@ -5,7 +5,7 @@
       <AppNavbar @toggleSidebarVisible="toggleSidebarVisible"/>
       <AppSidebar :is-open="sidebarVisible" :key="locale"/>
       <main class="app-content" :class="{full: !sidebarVisible}">
-        <div class="app-page">
+        <div class="app-page grey lighten-5">
           <RouterView/>
         </div>
       </main>
