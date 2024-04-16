@@ -4,6 +4,7 @@
   "Message_MustBeLonger": "must be longer than",
   "Message_Characters": "characters",
   "Update": "Update",
+  "Updated": "updated",
   "Enter": "Enter",
   "Exit": "Exit",
   "Register": "Register",
@@ -50,5 +51,9 @@
   "SelectCategory": "Select category",
   "Message_MinAmount": "The amount must not be less than",
   "Message_EnterDescription": "Enter description",
-  "Create": "Create"
+  "Create": "Create",
+  "Title": "Title",
+  "EnterCategoryTitle": "Enter category title",
+  "Limit": "Limit",
+  "Edit": "Edit"
 }

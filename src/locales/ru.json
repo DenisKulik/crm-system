@@ -4,6 +4,7 @@
   "Message_MustBeLonger": "должно быть длиннее",
   "Message_Characters": "символов",
   "Update": "Обновить",
+  "Updated": "обновлена",
   "Enter": "Войти",
   "Exit": "Выйти",
   "Register": "Зарегистрироваться",
@@ -50,5 +51,9 @@
   "SelectCategory": "Выберите категорию",
   "Message_MinAmount": "Минимальная сумма",
   "Message_EnterDescription": "Введите описание",
-  "Create": "Создать"
+  "Create": "Создать",
+  "Title": "Название",
+  "EnterCategoryTitle": "Введите название категории",
+  "Limit": "Лимит",
+  "Edit": "Редактировать"
 }
