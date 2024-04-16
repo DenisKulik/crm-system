@@ -46,5 +46,9 @@
   "InvalidCredential": "Неверный логин или пароль",
   "EmailAlreadyInUse": "Пользователь с таким email уже существует",
   "DetailRecordError": "Запись не найдена",
-  "Description": "Описание"
+  "Description": "Описание",
+  "SelectCategory": "Выберите категорию",
+  "Message_MinAmount": "Минимальная сумма",
+  "Message_EnterDescription": "Введите описание",
+  "Create": "Создать"
 }

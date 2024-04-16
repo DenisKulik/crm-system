@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>{{ 'NewRecord' | localize }}</h3>
     </div>
 
     <AppLoader v-if="loading"/>
 
     <p class="center" v-else-if="!categories.length">
-      Категорий пока нет.
-      <RouterLink to="/categories">Добавить категорию</RouterLink>
+      {{ 'NoCategories' | localize }}
+      <RouterLink to="/categories">
+        {{ 'AddNewCategory' | localize }}
+      </RouterLink>
     </p>
 
     <form v-else class="form" @submit.prevent="submitHandler">
@@ -25,7 +27,7 @@
             {{ category.title }}
           </option>
         </select>
-        <label>Выберите категорию</label>
+        <label>{{ 'SelectCategory' | localize }}</label>
       </div>
 
       <p>
@@ -37,7 +39,7 @@
             value="income"
             v-model="record.type"
           />
-          <span>Доход</span>
+          <span>{{ 'Income' | localize }}</span>
         </label>
       </p>
 
@@ -50,7 +52,7 @@
             value="outcome"
             v-model="record.type"
           />
-          <span>Расход</span>
+          <span>{{ 'Outcome' | localize }}</span>
         </label>
       </p>
 
@@ -61,12 +63,12 @@
           v-model.number="record.amount"
           :class="{invalid: $v.record.amount.$error}"
         >
-        <label for="amount">Сумма</label>
+        <label for="amount">{{ 'Amount' | localize }}</label>
         <span
           v-if="$v.record.amount.$error"
           class="helper-text invalid"
         >
-          Минимальная сумма {{ $v.record.amount.$params.minValue.min }}
+          {{ 'Message_MinAmount' | localize }} {{ $v.record.amount.$params.minValue.min }}
         </span>
       </div>
 
@@ -77,17 +79,17 @@
           v-model.trim="record.description"
           :class="{invalid: $v.record.description.$error}"
         >
-        <label for="description">Описание</label>
+        <label for="description">{{ 'Description' | localize }}</label>
         <span
           v-if="$v.record.description.$error"
           class="helper-text invalid"
         >
-          Введите описание
+          {{ 'Message_EnterDescription' | localize }}
         </span>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Создать
+        {{ 'Create' | localize }}
         <i class="material-icons right">send</i>
       </button>
     </form>
