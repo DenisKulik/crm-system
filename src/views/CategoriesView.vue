@@ -1,29 +1,30 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'Categories' | localize }}</h3>
-    </div>
-    <section>
-      <AppLoader v-if="loading"/>
-      <div v-else class="row">
-        <CategoryCreate @created="addNewCategory"/>
-        <CategoryEdit
-          v-if="categories.length"
-          :categories="categories"
-          :key="categories.length + updateCount"
-          @updated="updateCategory"
-        />
-        <p v-else class="center">{{ 'NoCategories' | localize }}</p>
-      </div>
+    <PageTitle title-key="Categories"/>
+    <AppLoader v-if="loading"/>
+    <section v-else class="row">
+      <CategoryCreate @created="addNewCategory"/>
+      <CategoryEdit
+        v-if="categories.length"
+        :categories="categories"
+        :key="categories.length + updateCount"
+        @updated="updateCategory"
+      />
+      <p v-else class="center">
+        {{ 'NoCategories' | localize }}
+      </p>
     </section>
   </div>
 </template>
 
 <script>
+// filters
+import { localizeFilter } from '@/filters';
+// components
 import CategoryCreate from '@/components/categories/CategoryCreate.vue';
 import CategoryEdit from '@/components/categories/CategoryEdit.vue';
 import AppLoader from '@/components/app/AppLoader.vue';
-import { localizeFilter } from '@/filters';
+import PageTitle from '@/components/ui/PageTitle.vue';
 
 export default {
   name: 'CategoriesView',
@@ -31,6 +32,7 @@ export default {
     return { title: localizeFilter('Categories') };
   },
   components: {
+    PageTitle,
     AppLoader,
     CategoryEdit,
     CategoryCreate,

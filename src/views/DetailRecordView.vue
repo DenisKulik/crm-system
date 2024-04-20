@@ -13,14 +13,7 @@
       </div>
       <div class="row">
         <div class="col s12 m6">
-          <div class="card" :class="record.type === 'income' ? 'green' : 'red'">
-            <div class="card-content white-text">
-              <p>{{ 'Description' | localize }}: {{ record.description }} </p>
-              <p>{{ 'Amount' | localize }}: {{ record.amount | currency('RUB') }}</p>
-              <p>{{ 'Category' | localize }}: {{ record.categoryName }}</p>
-              <small>{{ record.date | date('date') }}</small>
-            </div>
-          </div>
+          <DetailCard :record="record"/>
         </div>
       </div>
     </div>
@@ -28,6 +21,9 @@
 </template>
 
 <script>
+// components
+import DetailCard from '@/components/detail-records/DetailCard.vue';
+// filters
 import { localizeFilter } from '../filters';
 
 export default {
@@ -36,7 +32,7 @@ export default {
     return { title: localizeFilter('History') };
   },
   methods: { localizeFilter },
-  components: {},
+  components: { DetailCard },
   data: () => ({
     record: null,
     category: null,

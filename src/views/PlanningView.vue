@@ -1,48 +1,40 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'Planning' | localize }}</h3>
+    <PageTitle :title-key="'Planning'">
       <h4>{{ info.bill | currency('RUB') }}</h4>
-    </div>
-
+    </PageTitle>
     <AppLoader v-if="loading"/>
-
     <p v-else-if="!categories.length">
       {{ 'NoCategories' | localize }}
       <router-link to="/categories">
         {{ 'AddNewCategory' | localize }}
       </router-link>
     </p>
-
     <section v-else>
-      <div v-for="category in categories" :key="category.id">
-        <p>
-          <strong>{{ category.title }}:</strong>
-          {{ category.spend | currency('RUB') }} {{ 'Out' | localize }}
-          {{ category.limit | currency('RUB') }}
-        </p>
-        <div class="progress" v-tooltip="category.tooltip">
-          <div
-            class="determinate"
-            :class="category.progressColor"
-            :style="{'width': category.progressPercent + '%'}"
-          ></div>
-        </div>
-      </div>
+       <CategoryItem
+         v-for="category in categories"
+         :key="category.id"
+         :category="category"
+       />
     </section>
   </div>
 </template>
 
 <script>
+// libs
 import { mapGetters } from 'vuex';
+// filters
 import { currencyFilter, localizeFilter } from '@/filters';
+// components
+import PageTitle from '@/components/ui/PageTitle.vue';
+import CategoryItem from '@/components/planning/CategoryItem.vue';
 
 export default {
   name: 'PlanningView',
   metaInfo() {
     return { title: localizeFilter('Planning') };
   },
-  components: {},
+  components: { CategoryItem, PageTitle },
   data: () => ({
     loading: true,
     categories: [],

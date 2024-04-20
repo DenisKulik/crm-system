@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'NewRecord' | localize }}</h3>
-    </div>
-
+    <PageTitle :title-key="'NewRecord'"/>
     <AppLoader v-if="loading"/>
-
     <p class="center" v-else-if="!categories.length">
       {{ 'NoCategories' | localize }}
       <RouterLink to="/categories">
@@ -88,26 +84,32 @@
         </span>
       </div>
 
-      <button class="btn waves-effect waves-light" type="submit">
-        {{ 'Create' | localize }}
-        <i class="material-icons right">send</i>
-      </button>
+      <BaseButtonSubmit :title-key="'Create'"/>
     </form>
   </div>
 </template>
 
 <script>
+// libs
 import { mapGetters } from 'vuex';
 import { minValue, required } from 'vuelidate/lib/validators';
-import AppLoader from '@/components/app/AppLoader.vue';
+// filters
 import { localizeFilter } from '@/filters';
+// components
+import AppLoader from '@/components/app/AppLoader.vue';
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
+import PageTitle from '@/components/ui/PageTitle.vue';
 
 export default {
   name: 'RecordView',
   metaInfo() {
     return { title: localizeFilter('NewRecord') };
   },
-  components: { AppLoader },
+  components: {
+    PageTitle,
+    BaseButtonSubmit,
+    AppLoader,
+  },
   data: () => ({
     select: null,
     loading: true,
@@ -168,7 +170,9 @@ export default {
       }
 
       if (!this.canCreateRecord) {
-        this.$message(`Недостаточно средств на счете (${this.record.amount - this.info.bill})`);
+        this.$message(`Недостаточно средств на счете (${
+          this.record.amount - this.info.bill
+        })`);
         return;
       }
 

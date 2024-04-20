@@ -1,28 +1,27 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'Bill' | localize }}</h3>
+    <PageTitle :title-key="'Bill'">
       <ButtonRefresh @onRefresh="refreshCurrency"/>
-    </div>
-
+    </PageTitle>
     <AppLoader v-if="loading"/>
-    <div v-else class="row">
-      <HomeBill
-        :rates="currency.data"
-      />
+    <section v-else class="row">
+      <HomeBill :rates="currency.data"/>
       <HomeCurrency
         :rates="currency.data"
         :date="currency.meta.last_updated_at"
       />
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
+// filters
+import { localizeFilter } from '@/filters';
+// components
 import HomeBill from '@/components/home/HomeBill.vue';
 import HomeCurrency from '@/components/home/HomeCurrency.vue';
 import ButtonRefresh from '@/components/ui/ButtonRefresh.vue';
-import { localizeFilter } from '@/filters';
+import PageTitle from '@/components/ui/PageTitle.vue';
 
 export default {
   name: 'HomeView',
@@ -30,6 +29,7 @@ export default {
     return { title: localizeFilter('Bill') };
   },
   components: {
+    PageTitle,
     ButtonRefresh,
     HomeCurrency,
     HomeBill,

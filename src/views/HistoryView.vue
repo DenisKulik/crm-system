@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'HistoryTitle' | localize }}</h3>
-    </div>
+    <PageTitle :title-key="'HistoryTitle'"/>
     <HistoryChart
       :records="records"
       :categories="categories"
@@ -10,7 +8,9 @@
     <AppLoader v-if="loading"/>
     <p class="center" v-else-if="!records.length">
       {{ 'NoRecords' | localize }}
-      <RouterLink to="/record">{{ 'AddNewRecord' | localize }}</RouterLink>
+      <RouterLink to="/record">
+        {{ 'AddNewRecord' | localize }}
+      </RouterLink>
     </p>
     <section v-else>
       <HistoryTable :records="items"/>
@@ -35,6 +35,7 @@ import { localizeFilter } from '@/filters';
 // components
 import HistoryTable from '@/components/history/HistoryTable.vue';
 import HistoryChart from '@/components/history/HistoryChart.vue';
+import PageTitle from '@/components/ui/PageTitle.vue';
 
 export default {
   name: 'HistoryView',
@@ -42,6 +43,7 @@ export default {
     return { title: localizeFilter('History') };
   },
   components: {
+    PageTitle,
     HistoryChart,
     HistoryTable,
   },
@@ -71,7 +73,9 @@ export default {
         ...record,
         categoryName: categories.find((category) => category.id === record.categoryID).title,
         typeClass: record.type === 'income' ? 'green' : 'red',
-        typeText: record.type === 'income' ? localizeFilter('Income') : localizeFilter('Outcome'),
+        typeText: record.type === 'income'
+          ? localizeFilter('Income')
+          : localizeFilter('Outcome'),
       }));
     },
   },

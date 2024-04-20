@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div class="page-title">
-      <h3>{{ 'Profile' | localize }}</h3>
-    </div>
-
+    <PageTitle :title-key="'Profile'"/>
     <form class="form" @submit.prevent="submitHandler">
       <div class="input-field">
         <input
@@ -21,35 +18,37 @@
           }} {{ $v.name.$params.minLength.min }} {{ 'Message_Characters' | localize }}
         </span>
       </div>
-
-      <div class="switch">
-        <label>
-          English
-          <input v-model="isRuLocale" type="checkbox">
-          <span class="lever"></span>
-          Русский
-        </label>
-      </div>
-
-      <button class="btn waves-effect waves-light" type="submit">
-        {{ 'Update' | localize }}
-        <i class="material-icons right">send</i>
-      </button>
+      <BaseSwitcher
+        v-model="isRuLocale"
+        :title-left="'English'"
+        :title-right="'Русский'"
+      />
+      <BaseButtonSubmit title-key="Update"/>
     </form>
   </div>
 </template>
 
 <script>
+// libs
 import { mapActions, mapGetters } from 'vuex';
 import { minLength, required } from 'vuelidate/lib/validators';
+// filters
 import { localizeFilter } from '@/filters';
+// components
+import PageTitle from '@/components/ui/PageTitle.vue';
+import BaseSwitcher from '@/components/ui/BaseSwitcher.vue';
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
 export default {
   name: 'ProfileView',
   metaInfo() {
     return { title: localizeFilter('Profile') };
   },
-  components: {},
+  components: {
+    BaseButtonSubmit,
+    BaseSwitcher,
+    PageTitle,
+  },
   data: () => ({
     name: '',
     isRuLocale: true,
