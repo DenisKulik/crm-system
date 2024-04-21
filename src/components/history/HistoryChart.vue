@@ -9,14 +9,14 @@
 </template>
 
 <script>
-import { localizeFilter } from '@/filters';
-
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Pie as PieChart } from 'vue-chartjs';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import {
   Chart as ChartJS, Title, Tooltip, Legend, ArcElement, CategoryScale,
 } from 'chart.js';
+// filters
+import { localizeFilter } from '@/filters';
 
 ChartJS.register(Title, Tooltip, Legend, ArcElement, CategoryScale);
 

@@ -1,9 +1,7 @@
 <template>
   <div class="col s12 m6">
     <div>
-      <div class="page-subtitle">
-        <h4>{{ 'Edit' | localize }}</h4>
-      </div>
+      <PageSubtitle :subtitle-key="'Edit'"/>
 
       <form @submit.prevent="submitHandler">
         <div class="input-field">
@@ -64,10 +62,14 @@ import { minValue, required } from 'vuelidate/lib/validators';
 import { localizeFilter } from '@/filters';
 // components
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
+import PageSubtitle from '@/components/ui/PageSubtitle.vue';
 
 export default {
   name: 'CategoryEdit',
-  components: { BaseButtonSubmit },
+  components: {
+    PageSubtitle,
+    BaseButtonSubmit,
+  },
   props: {
     categories: {
       type: Array,

@@ -1,9 +1,7 @@
 <template>
   <div class="col s12 m6">
     <div>
-      <div class="page-subtitle">
-        <h4>{{ 'Create' | localize }}</h4>
-      </div>
+      <PageSubtitle :subtitle-key="'Create'"/>
 
       <form @submit.prevent="submitHandler">
         <div class="input-field">
@@ -47,10 +45,14 @@
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
+import PageSubtitle from '@/components/ui/PageSubtitle.vue';
 
 export default {
   name: 'CategoryCreate',
-  components: { BaseButtonSubmit },
+  components: {
+    PageSubtitle,
+    BaseButtonSubmit,
+  },
   props: {},
   data: () => ({
     title: '',

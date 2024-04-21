@@ -2,11 +2,7 @@
   <div class="switch">
     <label>
       {{ titleLeft }}
-      <input
-        type="checkbox"
-        :checked="value"
-        @change="$emit('input', $event.target.checked)"
-      >
+      <input type="checkbox" :checked="value" @change="onChangeHandler">
       <span class="lever"></span>
       {{ titleRight }}
     </label>
@@ -28,6 +24,11 @@ export default {
     titleRight: {
       type: String,
       default: '',
+    },
+  },
+  methods: {
+    onChangeHandler(event) {
+      this.$emit('input', event.target.checked);
     },
   },
 };
