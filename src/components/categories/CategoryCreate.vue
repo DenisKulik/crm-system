@@ -38,10 +38,7 @@
           </span>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit">
-          {{ 'Create' | localize }}
-          <i class="material-icons right">send</i>
-        </button>
+        <BaseButtonSubmit :title-key="'Create'"/>
       </form>
     </div>
   </div>
@@ -49,10 +46,11 @@
 
 <script>
 import { required, minValue } from 'vuelidate/lib/validators';
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
 export default {
   name: 'CategoryCreate',
-  components: {},
+  components: { BaseButtonSubmit },
   props: {},
   data: () => ({
     title: '',
@@ -60,7 +58,10 @@ export default {
   }),
   validations: {
     title: { required },
-    limit: { minValue: minValue(1), required },
+    limit: {
+      minValue: minValue(1),
+      required,
+    },
   },
   mounted() {
     this.$nextTick(() => {

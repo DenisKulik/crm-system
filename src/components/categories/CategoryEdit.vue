@@ -51,22 +51,23 @@
           </span>
         </div>
 
-        <button class="btn waves-effect waves-light" type="submit">
-          {{ 'Update' | localize }}
-          <i class="material-icons right">send</i>
-        </button>
+        <BaseButtonSubmit :title-key="'Update'"/>
       </form>
     </div>
   </div>
 </template>
 
 <script>
+// libs
 import { minValue, required } from 'vuelidate/lib/validators';
+// filters
 import { localizeFilter } from '@/filters';
+// components
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
 export default {
   name: 'CategoryEdit',
-  components: {},
+  components: { BaseButtonSubmit },
   props: {
     categories: {
       type: Array,

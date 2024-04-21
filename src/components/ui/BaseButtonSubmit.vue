@@ -1,13 +1,16 @@
 <template>
   <button class="btn waves-effect waves-light" type="submit">
     {{ titleKey | localize }}
-    <i class="material-icons right">send</i>
+    <SendIcon/>
   </button>
 </template>
 
 <script>
+import SendIcon from '@/components/icons/SendIcon.vue';
+
 export default {
   name: 'BaseButtonSubmit',
+  components: { SendIcon },
   props: {
     titleKey: {
       type: String,
