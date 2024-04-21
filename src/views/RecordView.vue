@@ -51,39 +51,21 @@
           <span>{{ 'Outcome' | localize }}</span>
         </label>
       </p>
-
-      <div class="input-field">
-        <input
-          id="amount"
-          type="number"
-          v-model.number="record.amount"
-          :class="{invalid: $v.record.amount.$error}"
-        >
-        <label for="amount">{{ 'Amount' | localize }}</label>
-        <span
-          v-if="$v.record.amount.$error"
-          class="helper-text invalid"
-        >
-          {{ 'Message_MinAmount' | localize }} {{ $v.record.amount.$params.minValue.min }}
-        </span>
-      </div>
-
-      <div class="input-field">
-        <input
-          id="description"
-          type="text"
-          v-model.trim="record.description"
-          :class="{invalid: $v.record.description.$error}"
-        >
-        <label for="description">{{ 'Description' | localize }}</label>
-        <span
-          v-if="$v.record.description.$error"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EnterDescription' | localize }}
-        </span>
-      </div>
-
+      <InputField
+        v-model.number="record.amount"
+        :field-id="'amount'"
+        :field-type="'number'"
+        :label-key="'Limit'"
+        :has-error="$v.record.amount.$error"
+        :error-message="errorMessageFieldAmount"
+      />
+      <InputField
+        v-model.trim="record.description"
+        :field-id="'description'"
+        :label-key="'Description'"
+        :has-error="$v.record.description.$error"
+        :error-message="'Message_EnterDescription' | localize"
+      />
       <BaseButtonSubmit :title-key="'Create'"/>
     </form>
   </div>
@@ -99,6 +81,7 @@ import { localizeFilter } from '@/filters';
 import AppLoader from '@/components/app/AppLoader.vue';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 import PageTitle from '@/components/ui/PageTitle.vue';
+import InputField from '@/components/ui/InputField.vue';
 
 export default {
   name: 'RecordView',
@@ -106,6 +89,7 @@ export default {
     return { title: localizeFilter('NewRecord') };
   },
   components: {
+    InputField,
     PageTitle,
     BaseButtonSubmit,
     AppLoader,
@@ -158,8 +142,12 @@ export default {
       if (this.record.type === 'income') {
         return true;
       }
-
       return this.info.bill >= this.record.amount;
+    },
+    errorMessageFieldAmount() {
+      return `${localizeFilter('Message_MinAmount')} ${
+        this.$v.record.amount.$params.minValue.min
+      }`;
     },
   },
   methods: {

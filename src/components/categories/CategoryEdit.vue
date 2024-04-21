@@ -1,57 +1,36 @@
 <template>
   <div class="col s12 m6">
-    <div>
-      <PageSubtitle :subtitle-key="'Edit'"/>
-
-      <form @submit.prevent="submitHandler">
-        <div class="input-field">
-          <select ref="select" v-model="current">
-            <option
-              v-for="category in categories"
-              :key="category.id"
-              :value="category.id"
-            >
-              {{ category.title }}
-            </option>
-          </select>
-          <label>{{ 'SelectCategory' | localize }}</label>
-        </div>
-
-        <div class="input-field">
-          <input
-            id="name"
-            type="text"
-            v-model="title"
-            :class="{invalid: $v.title.$error}"
+    <PageSubtitle :subtitle-key="'Edit'"/>
+    <form @submit.prevent="submitHandler">
+      <div class="input-field">
+        <select ref="select" v-model="current">
+          <option
+            v-for="category in categories"
+            :key="category.id"
+            :value="category.id"
           >
-          <label for="name">{{ 'Title' | localize }}</label>
-          <span
-            v-if="$v.title.$error"
-            class="helper-text invalid"
-          >
-            {{ 'EnterCategoryTitle' | localize }}
-          </span>
-        </div>
-
-        <div class="input-field">
-          <input
-            id="limit"
-            type="number"
-            v-model.number="limit"
-            :class="{invalid: $v.limit.$error}"
-          >
-          <label for="limit">{{ 'Limit' | localize }}</label>
-          <span
-            v-if="$v.limit.$error"
-            class="helper-text invalid"
-          >
-            {{ 'Message_MinAmount' | localize }} {{ $v.limit.$params.minValue.min }}
-          </span>
-        </div>
-
-        <BaseButtonSubmit :title-key="'Update'"/>
-      </form>
-    </div>
+            {{ category.title }}
+          </option>
+        </select>
+        <label>{{ 'SelectCategory' | localize }}</label>
+      </div>
+      <InputField
+        v-model.trim="title"
+        :field-id="'title'"
+        :label-key="'Title'"
+        :has-error="$v.title.$error"
+        :error-message="'EnterCategoryTitle' | localize"
+      />
+      <InputField
+        v-model.number="limit"
+        :field-id="'limit'"
+        :field-type="'number'"
+        :label-key="'Limit'"
+        :has-error="$v.limit.$error"
+        :error-message="errorMessageFieldLimit"
+      />
+      <BaseButtonSubmit :title-key="'Update'"/>
+    </form>
   </div>
 </template>
 
@@ -63,10 +42,12 @@ import { localizeFilter } from '@/filters';
 // components
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 import PageSubtitle from '@/components/ui/PageSubtitle.vue';
+import InputField from '@/components/ui/InputField.vue';
 
 export default {
   name: 'CategoryEdit',
   components: {
+    InputField,
     PageSubtitle,
     BaseButtonSubmit,
   },
@@ -109,6 +90,11 @@ export default {
     if (this.select && this.select.destroy) {
       this.select.destroy();
     }
+  },
+  computed: {
+    errorMessageFieldLimit() {
+      return `${localizeFilter('Message_MinAmount')} ${this.$v.limit.$params.minValue.min}`;
+    },
   },
   methods: {
     async submitHandler() {

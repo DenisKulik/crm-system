@@ -1,6 +1,7 @@
 {
   "Profile": "Profile",
   "Name": "Name",
+  "Email": "Email",
   "Message_MustBeLonger": "must be longer than",
   "Message_Characters": "characters",
   "Update": "Update",

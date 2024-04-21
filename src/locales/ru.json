@@ -1,6 +1,7 @@
 {
   "Profile": "Профиль",
   "Name": "Имя",
+  "Email": "Email",
   "Message_MustBeLonger": "должно быть длиннее",
   "Message_Characters": "символов",
   "Update": "Обновить",

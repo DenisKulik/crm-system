@@ -2,61 +2,26 @@
   <form class="card grey lighten-5 auth-card" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">{{ 'CRM_Title' | localize }}</span>
-      <div class="input-field">
-        <input
-          id="email"
-          type="text"
-          v-model.trim="email"
-          :class="{invalid: $v.email.$error}"
-        >
-        <label for="email">Email</label>
-        <small
-          v-if="$v.email.$dirty && !$v.email.required"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EmailEmpty' | localize }}
-        </small>
-        <small
-          v-else-if="$v.email.$dirty && !$v.email.email"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EmailIncorrect' | localize }}
-        </small>
-      </div>
-      <div class="input-field">
-        <input
-          id="password"
-          type="password"
-          v-model.trim="password"
-          :class="{invalid: $v.password.$error}"
-        >
-        <label for="password">{{ 'Password' | localize }}</label>
-        <small
-          v-if="$v.password.$dirty && !$v.password.required"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EnterPassword' | localize }}
-        </small>
-        <small
-          v-else-if="$v.password.$dirty && !$v.password.minLength"
-          class="helper-text invalid"
-        >
-          {{ 'Password' | localize }} {{ 'Message_MustBeLonger' | localize }} {{
-            $v.password.$params.minLength.min }} {{ 'Message_Characters' | localize }}
-        </small>
-      </div>
+      <InputField
+        v-model.trim="email"
+        :field-id="'email'"
+        :label-key="'Email'"
+        :has-error="$v.email.$error"
+        :error-message="errorMessageFieldEmail"
+      />
+      <InputField
+        v-model="password"
+        :field-id="'password'"
+        :field-type="'password'"
+        :label-key="'Password'"
+        :has-error="$v.password.$error"
+        :error-message="errorMessageFieldPassword"
+      />
     </div>
     <div class="card-action">
       <div>
-        <button
-          class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
-          {{ 'Enter' | localize }}
-          <i class="material-icons right">send</i>
-        </button>
+        <BaseButtonSubmit :class="'auth-submit'" :title-key="'Enter'"/>
       </div>
-
       <p class="center">
         Нет аккаунта?
         <RouterLink to="/register">{{ 'Register' | localize }}</RouterLink>
@@ -69,13 +34,18 @@
 import { email, required, minLength } from 'vuelidate/lib/validators';
 import { messages } from '@/utils';
 import { localizeFilter } from '@/filters';
+import InputField from '@/components/ui/InputField.vue';
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
 export default {
   name: 'LoginView',
   metaInfo() {
     return { title: localizeFilter('LogIn') };
   },
-  components: {},
+  components: {
+    BaseButtonSubmit,
+    InputField,
+  },
   data: () => ({
     email: '',
     password: '',
@@ -94,6 +64,32 @@ export default {
     if (messages[this.$route.query.message]) {
       this.$message(messages[this.$route.query.message]);
     }
+  },
+  computed: {
+    errorMessageFieldEmail() {
+      let errorMessageFieldEmail;
+
+      if (this.$v.email.$dirty && !this.$v.email.required) {
+        errorMessageFieldEmail = localizeFilter('Message_EmailEmpty');
+      } else if (this.$v.email.$dirty && !this.$v.email.email) {
+        errorMessageFieldEmail = localizeFilter('Message_EmailIncorrect');
+      }
+
+      return errorMessageFieldEmail;
+    },
+    errorMessageFieldPassword() {
+      let errorMessageFieldPassword;
+
+      if (this.$v.password.$dirty && !this.$v.password.required) {
+        errorMessageFieldPassword = localizeFilter('Message_EnterPassword');
+      } else if (this.$v.password.$dirty && !this.$v.password.minLength) {
+        errorMessageFieldPassword = `${localizeFilter('Password')} ${
+          localizeFilter('Message_MustBeLonger')} ${
+          this.$v.password.$params.minLength.min} ${localizeFilter('Message_Characters')}`;
+      }
+
+      return errorMessageFieldPassword;
+    },
   },
   methods: {
     async onSubmit() {

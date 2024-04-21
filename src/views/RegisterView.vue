@@ -63,7 +63,7 @@
           v-else-if="$v.name.$dirty && !$v.name.minLength"
           class="helper-text invalid"
         >
-         Поле {{ 'Name' | localize }} {{ 'Message_MustBeLonger' | localize }} {{
+          Поле {{ 'Name' | localize }} {{ 'Message_MustBeLonger' | localize }} {{
             $v.password.$params.minLength.min }} {{ 'Message_Characters' | localize }}
         </small>
       </div>
@@ -140,7 +140,10 @@ export default {
       };
       try {
         await this.$store.dispatch('register', formData);
-        this.$router.push('/');
+        if (this.$route.path !== '/') {
+          this.$router.push('/')
+            .catch((e) => console.log(e));
+        }
       } catch (e) {
         console.log(e);
       }

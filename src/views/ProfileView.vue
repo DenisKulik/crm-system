@@ -2,28 +2,19 @@
   <div>
     <PageTitle :title-key="'Profile'"/>
     <form class="form" @submit.prevent="submitHandler">
-      <div class="input-field">
-        <input
-          id="description"
-          type="text"
-          v-model="name"
-          :class="{invalid: $v.name.$error}"
-        >
-        <label for="description">{{ 'Name' | localize }}</label>
-        <span
-          v-if="$v.name.$error"
-          class="helper-text invalid"
-        >
-          {{ 'Name' | localize }} {{ 'Message_MustBeLonger' | localize
-          }} {{ $v.name.$params.minLength.min }} {{ 'Message_Characters' | localize }}
-        </span>
-      </div>
+      <InputField
+        v-model.trim="name"
+        :field-id="'description'"
+        :label-key="'Name'"
+        :has-error="$v.name.$error"
+        :error-message="errorMessageFieldName"
+      />
       <BaseSwitcher
         v-model="isRuLocale"
         :title-left="'English'"
         :title-right="'Русский'"
       />
-      <BaseButtonSubmit title-key="Update"/>
+      <BaseButtonSubmit :title-key="'Update'"/>
     </form>
   </div>
 </template>
@@ -38,6 +29,7 @@ import { localizeFilter } from '@/filters';
 import PageTitle from '@/components/ui/PageTitle.vue';
 import BaseSwitcher from '@/components/ui/BaseSwitcher.vue';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
+import InputField from '@/components/ui/InputField.vue';
 
 export default {
   name: 'ProfileView',
@@ -45,6 +37,7 @@ export default {
     return { title: localizeFilter('Profile') };
   },
   components: {
+    InputField,
     BaseButtonSubmit,
     BaseSwitcher,
     PageTitle,
@@ -62,12 +55,13 @@ export default {
   mounted() {
     this.name = this.info.name;
     this.isRuLocale = this.info.locale === 'ru-RU';
-    this.$nextTick(() => {
-      M.updateTextFields();
-    });
   },
   computed: {
     ...mapGetters(['info']),
+    errorMessageFieldName() {
+      return `${localizeFilter('Name')} ${localizeFilter('Message_MustBeLonger')} ${
+        this.$v.name.$params.minLength.min} ${localizeFilter('Message_Characters')}`;
+    },
   },
   methods: {
     ...mapActions(['updateInfo']),
