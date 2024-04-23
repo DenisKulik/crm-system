@@ -2,18 +2,11 @@
   <div class="col s12 m6">
     <PageSubtitle :subtitle-key="'Edit'"/>
     <form @submit.prevent="submitHandler">
-      <div class="input-field">
-        <select ref="select" v-model="current">
-          <option
-            v-for="category in categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            {{ category.title }}
-          </option>
-        </select>
-        <label>{{ 'SelectCategory' | localize }}</label>
-      </div>
+      <InputSelect
+        v-model="current"
+        :option-list="categories"
+        :label-key="'SelectCategory'"
+      />
       <InputField
         v-model.trim="title"
         :field-id="'title'"
@@ -43,10 +36,12 @@ import { localizeFilter } from '@/filters';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 import PageSubtitle from '@/components/ui/PageSubtitle.vue';
 import InputField from '@/components/ui/InputField.vue';
+import InputSelect from '@/components/ui/InputSelect.vue';
 
 export default {
   name: 'CategoryEdit',
   components: {
+    InputSelect,
     InputField,
     PageSubtitle,
     BaseButtonSubmit,
@@ -79,17 +74,6 @@ export default {
     this.current = id;
     this.title = title;
     this.limit = limit;
-  },
-  mounted() {
-    this.select = M.FormSelect.init(this.$refs.select);
-    this.$nextTick(() => {
-      M.updateTextFields();
-    });
-  },
-  beforeDestroy() {
-    if (this.select && this.select.destroy) {
-      this.select.destroy();
-    }
   },
   computed: {
     errorMessageFieldLimit() {

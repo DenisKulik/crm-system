@@ -22,7 +22,7 @@ export default {
   name: 'InputField',
   props: {
     value: {
-      type: String,
+      type: [String, Number],
       default: '',
     },
     fieldId: {

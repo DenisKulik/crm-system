@@ -10,47 +10,25 @@
     </p>
 
     <form v-else class="form" @submit.prevent="submitHandler">
-      <div class="input-field">
-        <select
-          ref="select"
-          v-model="record.categoryID"
-        >
-          <option
-            v-for="category in categories"
-            :key="category.id"
-            :value="category.id"
-          >
-            {{ category.title }}
-          </option>
-        </select>
-        <label>{{ 'SelectCategory' | localize }}</label>
-      </div>
+      <InputSelect
+        v-model="record.categoryID"
+        :option-list="categories"
+        :label-key="'SelectCategory'"
+      />
 
-      <p>
-        <label>
-          <input
-            class="with-gap"
-            name="type"
-            type="radio"
-            value="income"
-            v-model="record.type"
-          />
-          <span>{{ 'Income' | localize }}</span>
-        </label>
-      </p>
+      <InputRadio
+        :value="'income'"
+        :name="'type'"
+        :checked="record.type === 'income'"
+        @change="record.type = $event"
+      />
+      <InputRadio
+        :value="'outcome'"
+        :name="'type'"
+        :checked="record.type === 'outcome'"
+        @change="record.type = $event"
+      />
 
-      <p>
-        <label>
-          <input
-            class="with-gap"
-            name="type"
-            type="radio"
-            value="outcome"
-            v-model="record.type"
-          />
-          <span>{{ 'Outcome' | localize }}</span>
-        </label>
-      </p>
       <InputField
         v-model.number="record.amount"
         :field-id="'amount'"
@@ -82,6 +60,8 @@ import AppLoader from '@/components/app/AppLoader.vue';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 import PageTitle from '@/components/ui/PageTitle.vue';
 import InputField from '@/components/ui/InputField.vue';
+import InputSelect from '@/components/ui/InputSelect.vue';
+import InputRadio from '@/components/ui/InputRadio.vue';
 
 export default {
   name: 'RecordView',
@@ -89,13 +69,14 @@ export default {
     return { title: localizeFilter('NewRecord') };
   },
   components: {
+    InputRadio,
+    InputSelect,
     InputField,
     PageTitle,
     BaseButtonSubmit,
     AppLoader,
   },
   data: () => ({
-    select: null,
     loading: true,
     categories: [],
     record: {
@@ -121,19 +102,6 @@ export default {
     // set default category
     if (this.categories.length) {
       this.record.categoryID = this.categories[0].id;
-    }
-
-    // init select
-    if (this.categories.length) {
-      this.$nextTick(() => {
-        this.select = M.FormSelect.init(this.$refs.select);
-        M.updateTextFields();
-      });
-    }
-  },
-  beforeDestroy() {
-    if (this.select && this.select.destroy) {
-      this.select.destroy();
     }
   },
   computed: {
