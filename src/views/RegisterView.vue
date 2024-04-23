@@ -2,71 +2,28 @@
   <form class="card auth-card grey lighten-5" @submit.prevent="onSubmit">
     <div class="card-content">
       <span class="card-title">{{ 'CRM_Title' | localize }}</span>
-      <div class="input-field">
-        <input
-          id="email"
-          type="text"
-          v-model.trim="email"
-          :class="{invalid: $v.email.$error}"
-        >
-        <label for="email">Email</label>
-        <small
-          v-if="$v.email.$dirty && !$v.email.required"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EmailEmpty' | localize }}
-        </small>
-        <small
-          v-else-if="$v.email.$dirty && !$v.email.email"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EmailIncorrect' | localize }}
-        </small>
-      </div>
-      <div class="input-field">
-        <input
-          id="password"
-          type="password"
-          v-model.trim="password"
-          :class="{invalid: $v.password.$error}"
-        >
-        <label for="password">{{ 'Password' | localize }}</label>
-        <small
-          v-if="$v.password.$dirty && !$v.password.required"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EnterPassword' | localize }}
-        </small>
-        <small
-          v-else-if="$v.password.$dirty && !$v.password.minLength"
-          class="helper-text invalid"
-        >
-          Поле {{ 'Password' | localize }} {{ 'Message_MustBeLonger' | localize }} {{
-            $v.password.$params.minLength.min }} {{ 'Message_Characters' | localize }}
-        </small>
-      </div>
-      <div class="input-field">
-        <input
-          id="name"
-          type="text"
-          v-model.trim="name"
-          :class="{invalid: $v.name.$error}"
-        >
-        <label for="name">{{ 'Name' | localize }}</label>
-        <small
-          v-if="$v.name.$dirty && !$v.name.required"
-          class="helper-text invalid"
-        >
-          {{ 'Message_EnterName' | localize }}
-        </small>
-        <small
-          v-else-if="$v.name.$dirty && !$v.name.minLength"
-          class="helper-text invalid"
-        >
-          Поле {{ 'Name' | localize }} {{ 'Message_MustBeLonger' | localize }} {{
-            $v.password.$params.minLength.min }} {{ 'Message_Characters' | localize }}
-        </small>
-      </div>
+      <InputField
+        v-model.trim="email"
+        :field-id="'email'"
+        :label-key="'Email'"
+        :has-error="$v.email.$error"
+        :error-message="errorMessageFieldEmail"
+      />
+      <InputField
+        v-model="password"
+        :field-id="'password'"
+        :field-type="'password'"
+        :label-key="'Password'"
+        :has-error="$v.password.$error"
+        :error-message="errorMessageFieldPassword"
+      />
+      <InputField
+        v-model.trim="name"
+        :field-id="'name'"
+        :label-key="'Name'"
+        :has-error="$v.name.$error"
+        :error-message="errorMessageFieldName"
+      />
       <p>
         <label>
           <input type="checkbox" v-model="agreement"/>
@@ -75,16 +32,7 @@
       </p>
     </div>
     <div class="card-action">
-      <div>
-        <button
-          class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
-          {{ 'Register' | localize }}
-          <i class="material-icons right">send</i>
-        </button>
-      </div>
-
+      <BaseButtonSubmit :class="'auth-submit'" :title-key="'Register'"/>
       <p class="center">
         {{ 'HasAccount' | localize }}
         <RouterLink to="/login">{{ 'Enter' | localize }}!</RouterLink>
@@ -94,15 +42,23 @@
 </template>
 
 <script>
+// libs
 import { email, required, minLength } from 'vuelidate/lib/validators';
+// filters
 import { localizeFilter } from '@/filters';
+// components
+import InputField from '@/components/ui/InputField.vue';
+import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
 export default {
   name: 'RegisterView',
   metaInfo() {
     return { title: localizeFilter('Register') };
   },
-  components: {},
+  components: {
+    BaseButtonSubmit,
+    InputField,
+  },
   data: () => ({
     email: '',
     password: '',
@@ -124,6 +80,47 @@ export default {
     },
     agreement: {
       checked: (value) => value,
+    },
+  },
+  computed: {
+    errorMessageFieldEmail() {
+      let errorMessageFieldEmail;
+
+      if (this.$v.email.$dirty && !this.$v.email.required) {
+        errorMessageFieldEmail = localizeFilter('Message_EmailEmpty');
+      } else if (this.$v.email.$dirty && !this.$v.email.email) {
+        errorMessageFieldEmail = localizeFilter('Message_EmailIncorrect');
+      }
+
+      return errorMessageFieldEmail;
+    },
+
+    errorMessageFieldPassword() {
+      let errorMessageFieldPassword;
+
+      if (this.$v.password.$dirty && !this.$v.password.required) {
+        errorMessageFieldPassword = localizeFilter('Message_EnterPassword');
+      } else if (this.$v.password.$dirty && !this.$v.password.minLength) {
+        errorMessageFieldPassword = `${localizeFilter('Password')} ${
+          localizeFilter('Message_MustBeLonger')} ${
+          this.$v.password.$params.minLength.min} ${localizeFilter('Message_Characters')}`;
+      }
+
+      return errorMessageFieldPassword;
+    },
+
+    errorMessageFieldName() {
+      let errorMessageFieldName;
+
+      if (this.$v.name.$dirty && !this.$v.name.required) {
+        errorMessageFieldName = localizeFilter('Message_EnterName');
+      } else if (this.$v.name.$dirty && !this.$v.name.minLength) {
+        errorMessageFieldName = `Поле ${localizeFilter('Name')} ${
+          localizeFilter('Message_MustBeLonger')} ${
+          this.$v.name.$params.minLength.min} ${localizeFilter('Message_Characters')}`;
+      }
+
+      return errorMessageFieldName;
     },
   },
   methods: {

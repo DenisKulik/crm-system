@@ -31,9 +31,13 @@
 </template>
 
 <script>
+// libs
 import { email, required, minLength } from 'vuelidate/lib/validators';
+// utils
 import { messages } from '@/utils';
+// filters
 import { localizeFilter } from '@/filters';
+// components
 import InputField from '@/components/ui/InputField.vue';
 import BaseButtonSubmit from '@/components/ui/BaseButtonSubmit.vue';
 
