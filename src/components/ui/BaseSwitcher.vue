@@ -2,7 +2,12 @@
   <div class="switch">
     <label>
       {{ titleLeft }}
-      <input type="checkbox" :checked="value" @change="onChangeHandler">
+      <input
+        type="checkbox"
+        data-testid="base-switcher"
+        :checked="value"
+        @change="onChangeHandler"
+      >
       <span class="lever"></span>
       {{ titleRight }}
     </label>

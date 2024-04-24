@@ -4,7 +4,7 @@ import BaseSwitcher from '@/components/ui/BaseSwitcher.vue';
 describe('BaseSwitcher.vue', () => {
   it('should be unchecked', () => {
     const wrapper = shallowMount(BaseSwitcher);
-    const checkbox = wrapper.find('input');
+    const checkbox = wrapper.find('[data-testid="base-switcher"]');
     expect(checkbox.element.checked).toBeFalsy();
   });
 
@@ -14,7 +14,7 @@ describe('BaseSwitcher.vue', () => {
         value: true,
       },
     });
-    const checkbox = wrapper.find('input');
+    const checkbox = wrapper.find('[data-testid="base-switcher"]');
     expect(checkbox.element.checked).toBeTruthy();
   });
 
@@ -31,9 +31,9 @@ describe('BaseSwitcher.vue', () => {
     expect(labels.at(0).text()).toContain('Right Title');
   });
 
-  it('emits input event on change', () => {
+  it('emits input event on change correctly', () => {
     const wrapper = shallowMount(BaseSwitcher);
-    const checkbox = wrapper.find('input');
+    const checkbox = wrapper.find('[data-testid="base-switcher"]');
     checkbox.trigger('change');
     expect(wrapper.emitted('input')).toBeTruthy();
   });

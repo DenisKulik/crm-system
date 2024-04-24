@@ -4,6 +4,7 @@
       <input
         class="with-gap"
         type="radio"
+        data-testid="type-radio"
         :name="name"
         :value="value"
         :checked="checked"
