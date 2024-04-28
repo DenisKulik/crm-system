@@ -1,14 +1,14 @@
-import { shallowMount } from '@vue/test-utils';
-
-import Vue from 'vue';
+import { shallowMount, createLocalVue } from '@vue/test-utils';
 import { localizeFilter } from '@/filters';
 import InputRadio from '@/components/ui/InputRadio.vue';
 
-Vue.filter('localize', localizeFilter);
+const localVue = createLocalVue();
+localVue.filter('localize', localizeFilter);
 
 describe('InputRadio.vue', () => {
   it('should be checked', () => {
     const wrapper = shallowMount(InputRadio, {
+      localVue,
       propsData: { checked: true },
     });
 
@@ -18,6 +18,7 @@ describe('InputRadio.vue', () => {
 
   it('should be unchecked', () => {
     const wrapper = shallowMount(InputRadio, {
+      localVue,
       propsData: { checked: false },
     });
 
@@ -27,6 +28,7 @@ describe('InputRadio.vue', () => {
 
   it('emits change input event correctly', () => {
     const wrapper = shallowMount(InputRadio, {
+      localVue,
       propsData: {
         value: 'income',
         checked: true,
